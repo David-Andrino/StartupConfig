@@ -62,3 +62,5 @@ let g:lightline = { 'colorscheme': 'nightowl' }
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 
+" COC 
+let g:coc_global_extensions = ['coc-clangd', 'coc-java', 'coc-sh']
