@@ -14,5 +14,7 @@ fi
 nvim +'PlugInstall' +qall
 
 # Install Git config 
-mkdir -p ~/.config/nvim
-curl -o ~/.config/nvim/init.vim https://raw.githubusercontent.com/SoraSpades/StartupConfig/main/init.vim
+cd /tmp/
+git clone https://github.com/soraspades/startupconfig
+cd StartupConfig
+cp -r nvim/* ~/.config/nvim/
