@@ -1,6 +1,6 @@
 #!/bin/bash
 apt update && apt upgrade -y
-apt install -y git neovim clangd wget openjdk-19-jdk code
+apt install -y git neovim clangd wget openjdk-19-jdk code unzip
 
 # Install nodejs
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
