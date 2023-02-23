@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>q", vim.cmd.Ex)--":Ex<enter>", { silent = true })
 vim.keymap.set("i", "jk", "<Esc>")
 
 -- Move selected lines

@@ -28,4 +28,6 @@ vim.opt.signcolumn = "yes:1"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+
 vim.g.mapleader = " "
+vim.g.netrw_liststyle = 3

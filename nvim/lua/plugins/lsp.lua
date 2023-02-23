@@ -1,15 +1,10 @@
-local lsp = require("lsp-zero")
+local lsp = require('lsp-zero')
+
+vim.opt.signcolumn = 'yes'
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-  'tsserver',
-  'sumneko_lua',
-  'rust_analyzer',
-})
-
--- Fix Undefined global 'vim'
-lsp.configure('sumneko_lua', {
+lsp.configure('lua_ls', {
     settings = {
         Lua = {
             diagnostics = {
@@ -18,6 +13,7 @@ lsp.configure('sumneko_lua', {
         }
     }
 })
+-- Fix Undefined global 'vim'
 
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
