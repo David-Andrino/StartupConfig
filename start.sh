@@ -5,15 +5,15 @@ install_packages="build-essential wget zsh neovim gh tmux alacritty"
 hack_nerd_font_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip"
 
 # Enforce root
-if [ "$UID" -ne "$ROOT_UID" ]
+if [[ "$UID" > 0 ]]
 then
   echo "Must be root to run this script."
   exit $E_NOTROOT
 fi  
 
-# Install add-apt-repository, curl
+# Install add-apt-repository, curl, git
 sudo apt update && sudo apt upgrade -y
-sudo apt install software-properties-common curl
+sudo apt install software-properties-common curl git
 
 # Install gh cli
 type -p curl >/dev/null || sudo apt install curl -y
@@ -42,20 +42,20 @@ mv /tmp/Hack/*.ttf ~/.local/share/fonts/HackNF
 # Configure nvim
 rm -rf ~/.config/nvim
 mkdir -p ~/.config/nvim
-cp -rf /tmp/startupconfig/nvim ~/.config/nvim
+cp -rf /tmp/startupconfig/nvim ~/.config/
 
 # Configure alacritty
 rm -rf ~/.config/alacritty
 mkdir -p ~/.config/alacritty
-cp -rf /tmp/startupconfig/alacritty ~/.config/alacritty
+cp -rf /tmp/startupconfig/alacritty ~/.config/
 
 # Install oh-my-zsh and plugins
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all
 
 # Set current user default terminal to zsh
-chsh $(loguser) -s $(which zsh)
+chsh -s $(which zsh)
 
 # Clean /tmp
 rm -rf /tmp/* 2> /dev/null
