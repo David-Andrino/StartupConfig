@@ -23,11 +23,11 @@ colors:
 font:
   size: 22.0
   bold:
-    family: Hack NF
+    family: UbuntuMono NF
   italic:
-    family: Hack NF
+    family: UbuntuMono NF
   normal:
-    family: Hack NF
+    family: UbuntuMono NF
     style: Regular
 window:
   opacity: 1.0

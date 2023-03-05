@@ -2,5 +2,5 @@
 Neovim Config File
 
 ```sh
-git clone 'https://github.com/SoraSpades/NeovimConfig' && cd NeovimConfig && sudo ./install.sh
+wget https://raw.githubusercontent.com/SoraSpades/StartupConfig/main/start.sh && chmod 777 ./start.sh && sudo ./start.sh && rm ./start.sh
 ```

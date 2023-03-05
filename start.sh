@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Initial Declarations
-install_packages="build-essential wget zsh neovim gh tmux alacritty"
-hack_nerd_font_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip"
+install_packages="build-essential wget zsh neovim gh tmux alacritty npm"
+ubuntu_nf_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/UbuntuMono.zip"
 
 # Enforce root
 if [[ "$UID" > 0 ]]
@@ -33,11 +33,12 @@ sudo apt install -y $install_packages
 cd /tmp
 git clone https://github.com/soraspades/startupconfig /tmp/startupconfig
 
-# Install Hack NF
-wget $hack_nerd_font_url -P /tmp
-unzip /tmp/Hack.zip -d /tmp
-mkdir -p ~/.local/share/fonts/HackNF
-mv /tmp/Hack/*.ttf ~/.local/share/fonts/HackNF
+# Install Ubuntu NF
+wget $ubuntu_nf_url -P /tmp
+unzip /tmp/UbuntuMono.zip -d /tmp
+rm -rf ~/.local/share/fonts/UbuntuMono
+mkdir -p ~/.local/share/fonts/UbuntuMono
+mv /tmp/*.ttf ~/.local/share/fonts/UbuntuMono
 
 # Configure nvim
 rm -rf ~/.config/nvim
@@ -50,9 +51,14 @@ mkdir -p ~/.config/alacritty
 cp -rf /tmp/startupconfig/alacritty ~/.config/
 
 # Install oh-my-zsh and plugins
+rm -rf "${ZSH_CUSTOM:-$HOME}/.oh-my-zsh/"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+rm -rf ~/.fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all
+
+# Change line beggining with ZSH_THEME to ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc
+sed -i 's/ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' ~/.zshrc
 
 # Set current user default terminal to zsh
 chsh -s $(which zsh)
