@@ -13,7 +13,7 @@ fi
 
 # Install add-apt-repository, curl, git
 sudo apt update && sudo apt upgrade -y
-sudo apt install software-properties-common curl git
+sudo apt install software-properties-common curl git -y
 
 # Install gh cli
 type -p curl >/dev/null || sudo apt install curl -y
