@@ -25,3 +25,6 @@ vim.keymap.set("v", "<leader>d", "\"_d")
 vim.keymap.set("n", "<leader>f", function()
     vim.lsp.buf.format()
 end)
+
+-- Format with <leader>j
+vim.keymap.set("n", "<leader>j", ":!clang-format -i %<CR><CR>")

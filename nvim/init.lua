@@ -40,6 +40,7 @@ plugins = {
     },
     'sainnhe/sonokai',
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    'christoomey/vim-tmux-navigator',
 }
 
 require("lazy").setup(plugins, opts)
